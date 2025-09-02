@@ -69,7 +69,7 @@ export async function POST(req: NextRequest) {
     console.error('Error updating profile:', error)
 
     // More specific error handling
-    if (error.name === 'ValidationError') {
+    if (error instanceof Error && error.name === 'ValidationError') {
       return NextResponse.json(
         { error: 'Validation failed', details: error.message },
         { status: 400 },
