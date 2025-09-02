@@ -2,13 +2,26 @@ import { NextRequest, NextResponse } from 'next/server'
 import { getPayload } from 'payload'
 import config from '@payload-config'
 
+// Define valid languages (adjust based on your schema)
+const VALID_LANGUAGES = ['english', 'arabic', 'french', 'spanish', 'urdu'] // Add your supported languages
+
 export async function POST(req: NextRequest) {
   try {
     const { email, firstName, lastName, language } = await req.json()
-    console.log(language)
+    console.log('Received data:', { email, firstName, lastName, language })
+
+    // Validation
     if (!email || !firstName || !lastName || !language) {
       return NextResponse.json(
-        { error: 'Email, first name, language and last name are required' },
+        { error: 'Email, first name, last name, and language are required' },
+        { status: 400 },
+      )
+    }
+
+    // Validate language value
+    if (!VALID_LANGUAGES.includes(language)) {
+      return NextResponse.json(
+        { error: `Invalid language. Supported languages: ${VALID_LANGUAGES.join(', ')}` },
         { status: 400 },
       )
     }
@@ -28,25 +41,41 @@ export async function POST(req: NextRequest) {
 
     const user = users.docs[0]
 
-    // Update user name
+    // Update user
     const updatedUser = await payload.update({
       collection: 'users',
       id: user.id,
       data: {
         firstName: firstName.trim(),
         lastName: lastName.trim(),
-        language,
+        language: language.trim(), // Also trim language
       },
     })
-    console.log(updatedUser)
+
+    console.log('Updated user:', updatedUser)
 
     return NextResponse.json({
       success: true,
-      user: updatedUser,
-      message: 'Name updated successfully',
+      user: {
+        id: updatedUser.id,
+        email: updatedUser.email,
+        firstName: updatedUser.firstName,
+        lastName: updatedUser.lastName,
+        language: updatedUser.language,
+      },
+      message: 'Profile updated successfully',
     })
   } catch (error) {
-    console.error('Error updating name:', error)
+    console.error('Error updating profile:', error)
+
+    // More specific error handling
+    if (error.name === 'ValidationError') {
+      return NextResponse.json(
+        { error: 'Validation failed', details: error.message },
+        { status: 400 },
+      )
+    }
+
     return NextResponse.json({ error: 'Internal server error' }, { status: 500 })
   }
 }

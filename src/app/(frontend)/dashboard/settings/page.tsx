@@ -80,6 +80,7 @@ export default function SettingsPage() {
           language: language,
         }),
       })
+      console.log(response)
 
       const result = await response.json()
 
@@ -262,45 +263,56 @@ export default function SettingsPage() {
                 </div>
 
                 {/* Language Selection */}
-             <div className="space-y-2">
-  <label className="text-sm font-medium text-maxfit-white flex items-center gap-2">
-    <Globe className="w-4 h-4 flex-shrink-0" /> {/* Changed from Mail to Globe icon */}
-    <span>Preferred Language</span>
-  </label>
-  <div className="relative">
-    <select
-      value={language}
-      onChange={(e) => setLanguage(e.target.value)}
-      disabled={!editingName}
-      className="w-full bg-maxfit-darker-grey/50 border border-maxfit-medium-grey/30 rounded-md px-3 py-2 text-maxfit-white disabled:text-maxfit-medium-grey text-sm sm:text-base focus:ring-2 focus:ring-maxfit-neon-green appearance-none"
-      style={{
-        WebkitAppearance: 'none',
-        MozAppearance: 'none'
-      }}
-    >
-      {languages.map((lang) => (
-        <option 
-          key={lang.value} 
-          value={lang.value}
-          className="border rounded-lg text-maxfit-white"
-          style={{
-            background: 'linear-gradient(to right, #00080A, #26402D, #26220E)',
-            padding: '8px',
-            margin: '4px',
-          }}
-        >
-          {lang.label}
-        </option>
-      ))}
-    </select>
-    {/* Custom dropdown arrow */}
-    <div className="absolute inset-y-0 right-0 flex items-center px-2 pointer-events-none">
-      <svg className="w-4 h-4 text-maxfit-neon-green" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-      </svg>
-    </div>
-  </div>
-</div>
+                <div className="space-y-2">
+                  <label className="text-sm font-medium text-maxfit-white flex items-center gap-2">
+                    <Globe className="w-4 h-4 flex-shrink-0" />{' '}
+                    {/* Changed from Mail to Globe icon */}
+                    <span>Preferred Language</span>
+                  </label>
+                  <div className="relative">
+                    <select
+                      value={language}
+                      onChange={(e) => setLanguage(e.target.value)}
+                      disabled={!editingName}
+                      className="w-full bg-maxfit-darker-grey/50 border border-maxfit-medium-grey/30 rounded-md px-3 py-2 text-maxfit-white disabled:text-maxfit-medium-grey text-sm sm:text-base focus:ring-2 focus:ring-maxfit-neon-green appearance-none"
+                      style={{
+                        WebkitAppearance: 'none',
+                        MozAppearance: 'none',
+                      }}
+                    >
+                      {languages.map((lang) => (
+                        <option
+                          key={lang.value}
+                          value={lang.value}
+                          className="border rounded-lg text-maxfit-white"
+                          style={{
+                            background: 'linear-gradient(to right, #00080A, #26402D, #26220E)',
+                            padding: '8px',
+                            margin: '4px',
+                          }}
+                        >
+                          {lang.label}
+                        </option>
+                      ))}
+                    </select>
+                    {/* Custom dropdown arrow */}
+                    <div className="absolute inset-y-0 right-0 flex items-center px-2 pointer-events-none">
+                      <svg
+                        className="w-4 h-4 text-maxfit-neon-green"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M19 9l-7 7-7-7"
+                        />
+                      </svg>
+                    </div>
+                  </div>
+                </div>
 
                 {/* Name Fields */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
