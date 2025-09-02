@@ -37,7 +37,7 @@ const AiAssistantPage = () => {
     }
 
     // Voice configuration per language and gender
-    const voiceConfigs: Record<string, { male: string; female: string }> = {
+    const voiceConfigs: Record<string, { male: 'Elliot' | 'Paige' | 'Kylie' | 'Rohan' | 'Lily' | 'Savannah' | 'Hana' | 'Neha' | 'Cole' | 'Harry' | 'Spencer'; female: 'Elliot' | 'Paige' | 'Kylie' | 'Rohan' | 'Lily' | 'Savannah' | 'Hana' | 'Neha' | 'Cole' | 'Harry' | 'Spencer' }> = {
       english: { male: 'Elliot', female: 'Paige' },
       spanish: { male: 'Elliot', female: 'Paige' }, // Use same voices for now, replace with Spanish voices if available
       french: { male: 'Elliot', female: 'Paige' },  // Use same voices for now, replace with French voices if available

@@ -90,7 +90,7 @@ export default function NutritionPlanPage() {
     try {
       setError(null)
       const fetchedPrograms = await fetchUserFitnessPrograms(user.email)
-      setPrograms(fetchedPrograms.filter((p) => p.dietPlan)) // Filter programs with dietPlan
+      setPrograms(fetchedPrograms.filter((p: { dietPlan: any }) => p.dietPlan)) // Filter programs with dietPlan
     } catch (err) {
       console.error('Error loading programs:', err)
       setError('Failed to load nutrition plans')

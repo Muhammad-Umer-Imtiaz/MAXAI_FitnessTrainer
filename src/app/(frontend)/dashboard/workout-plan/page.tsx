@@ -52,6 +52,7 @@ interface WorkoutPlan {
 interface FitnessProgram {
   id: string
   workoutPlan: WorkoutPlan
+  dietPlan: any // Add this property to match the required structure
   generatedAt: string
   createdAt: string
 }
@@ -72,7 +73,7 @@ export default function WorkoutPlansPage() {
       if (user?.email) {
         const fetchedPrograms = await fetchUserFitnessPrograms(user.email)
         {/* Filter to only include programs with workout plans*/}
-        const workoutPrograms = fetchedPrograms.filter(program => program.workoutPlan)
+        const workoutPrograms = fetchedPrograms.filter((program: { workoutPlan: any }) => program.workoutPlan)
         setPrograms(workoutPrograms)
       }
       setLoading(false)

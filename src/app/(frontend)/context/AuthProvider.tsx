@@ -8,6 +8,7 @@ type User = {
   lastName: string
   plan: 'free' | 'starter' | 'proFit' | 'maxFlex'
   aiCallsUsed: number
+  language: string
   maxAiCalls: number // This should match the field in your database
   // add other fields you want
 }
