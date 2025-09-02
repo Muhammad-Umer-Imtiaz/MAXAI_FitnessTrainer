@@ -50,6 +50,7 @@ export const Users: CollectionConfig = {
         { label: 'Arabic', value: 'arabic' },
         { label: 'Spanish', value: 'spanish' },
         { label: 'French', value: 'french' },
+        { label: 'Urdu', value: 'urdu' },
       ],
     },
     {

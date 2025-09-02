@@ -401,7 +401,7 @@ export default function SignupPage() {
                                     'linear-gradient(to right, #00080A, #26402D, #26220E)',
                                 }}
                               >
-                                {['English', 'Arabic', 'Spanish', 'French'].map((lang) => (
+                                {['English', 'Arabic', 'Spanish', 'French', 'Urdu'].map((lang) => (
                                   <SelectItem key={lang} value={lang}>
                                     {lang}
                                   </SelectItem>
