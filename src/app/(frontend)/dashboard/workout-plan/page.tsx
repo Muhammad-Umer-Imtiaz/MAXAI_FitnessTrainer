@@ -71,7 +71,7 @@ export default function WorkoutPlansPage() {
     const loadPrograms = async () => {
       if (user?.email) {
         const fetchedPrograms = await fetchUserFitnessPrograms(user.email)
-        // Filter to only include programs with workout plans
+        {/* Filter to only include programs with workout plans*/}
         const workoutPrograms = fetchedPrograms.filter(program => program.workoutPlan)
         setPrograms(workoutPrograms)
       }
@@ -523,12 +523,6 @@ export default function WorkoutPlansPage() {
                                                       </div>
                                                     </div>
                                                     <div className="glass-card rounded-lg p-3 text-center">
-                                                    //   <div className="text-maxfit-medium-grey text-xs uppercase tracking-wide mb-1">
-                                                    //     Weight
-                                                    //   </div>
-                                                    //   <div className="text-maxfit-white font-bold text-lg">
-                                                    //     {exercise.weight}
-                                                    //   </div>
                                                     </div>
                                                     {exercise.restTime && (
                                                       <div className="glass-card rounded-lg p-3 text-center">
